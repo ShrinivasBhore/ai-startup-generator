@@ -1,34 +1,54 @@
-import { motion } from 'motion/react';
-import { CheckCircle2 } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import { motion } from "motion/react";
+import { CheckCircle2 } from "lucide-react";
+import { cn } from "@/src/lib/utils";
 
 const plans = [
   {
     name: "Starter",
     price: "$29",
     description: "Perfect for solo entrepreneurs validating a single idea.",
-    features: ["1 Business Plan", "Basic Market Research", "PDF Export", "Email Support"],
-    popular: false
+    features: [
+      "1 Business Plan",
+      "Basic Market Research",
+      "PDF Export",
+      "Email Support",
+    ],
+    popular: false,
   },
   {
     name: "Pro",
     price: "$79",
     description: "For serious founders needing comprehensive materials.",
-    features: ["5 Business Plans", "Deep Competitor Analysis", "Financial Models", "Pitch Deck Generator", "Priority Support"],
-    popular: true
+    features: [
+      "5 Business Plans",
+      "Deep Competitor Analysis",
+      "Financial Models",
+      "Pitch Deck Generator",
+      "Priority Support",
+    ],
+    popular: true,
   },
   {
     name: "Agency",
     price: "$199",
     description: "For incubators, VC firms, and agency builders.",
-    features: ["Unlimited Plans", "API Access", "Custom Branding", "Collaborative Workspace", "Dedicated Account Manager"],
-    popular: false
-  }
+    features: [
+      "Unlimited Plans",
+      "API Access",
+      "Custom Branding",
+      "Collaborative Workspace",
+      "Dedicated Account Manager",
+    ],
+    popular: false,
+  },
 ];
 
 export function Pricing() {
   return (
-    <section id="pricing" className="py-24 bg-black relative z-10 border-t border-white/5">
+    <section
+      id="pricing"
+      className="py-24 bg-black relative z-10 border-t border-white/5"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
@@ -49,9 +69,9 @@ export function Pricing() {
               transition={{ delay: idx * 0.1 }}
               className={cn(
                 "relative p-8 rounded-3xl border flex flex-col h-full bg-black",
-                plan.popular 
-                  ? "border-indigo-500 shadow-[0_0_40px_rgba(79,70,229,0.15)]" 
-                  : "border-white/10"
+                plan.popular
+                  ? "border-indigo-500 shadow-[0_0_40px_rgba(79,70,229,0.15)]"
+                  : "border-white/10",
               )}
             >
               {plan.popular && (
@@ -59,12 +79,16 @@ export function Pricing() {
                   Most Popular
                 </div>
               )}
-              
+
               <div className="mb-8">
-                <h3 className="text-xl font-medium text-white mb-2">{plan.name}</h3>
+                <h3 className="text-xl font-medium text-white mb-2">
+                  {plan.name}
+                </h3>
                 <p className="text-gray-400 text-sm h-10">{plan.description}</p>
                 <div className="mt-6 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
+                  <span className="text-4xl font-bold text-white">
+                    {plan.price}
+                  </span>
                   <span className="text-gray-400">/mo</span>
                 </div>
               </div>
@@ -80,12 +104,14 @@ export function Pricing() {
                 </ul>
               </div>
 
-              <button className={cn(
-                "w-full mt-8 py-3 rounded-xl font-medium transition-colors",
-                plan.popular
-                  ? "bg-indigo-600 hover:bg-indigo-700 text-white"
-                  : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
-              )}>
+              <button
+                className={cn(
+                  "w-full mt-8 py-3 rounded-xl font-medium transition-colors",
+                  plan.popular
+                    ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+                    : "bg-white/5 hover:bg-white/10 text-white border border-white/10",
+                )}
+              >
                 Get Started
               </button>
             </motion.div>

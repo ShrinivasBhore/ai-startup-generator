@@ -1,32 +1,44 @@
-import { BrainCircuit } from 'lucide-react';
-import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { BrainCircuit } from "lucide-react";
+import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 
-export function AuthLayout({ children, title, subtitle }: { children: React.ReactNode, title: string, subtitle: string }) {
+export function AuthLayout({
+  children,
+  title,
+  subtitle,
+}: {
+  children: React.ReactNode;
+  title: string;
+  subtitle: string;
+}) {
   return (
     <div className="min-h-screen bg-black flex text-white overflow-hidden relative">
       {/* Visual left section */}
       <div className="hidden lg:flex lg:w-1/2 relative bg-zinc-950 flex-col justify-between p-12 border-r border-white/10">
         <div className="relative z-10 flex items-center gap-2">
           <BrainCircuit className="w-8 h-8 text-indigo-500" />
-          <span className="text-xl font-bold font-sans tracking-tight">AI Startup Gen</span>
+          <span className="text-xl font-bold font-sans tracking-tight">
+            AI Startup Gen
+          </span>
         </div>
-        
+
         <div className="relative z-10 max-w-lg mb-12">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl font-bold mb-4 tracking-tight"
           >
             Turn big ideas into execution plans.
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-gray-400 text-lg"
           >
-            Join thousands of founders leveraging enterprise-grade AI to generate business strategy, financial models, and precise market research.
+            Join thousands of founders leveraging enterprise-grade AI to
+            generate business strategy, financial models, and precise market
+            research.
           </motion.p>
         </div>
 
@@ -39,10 +51,12 @@ export function AuthLayout({ children, title, subtitle }: { children: React.Reac
       <div className="flex-1 flex flex-col justify-center px-6 py-12 sm:px-12 lg:px-24">
         <div className="flex items-center gap-2 lg:hidden mb-12">
           <BrainCircuit className="w-8 h-8 text-indigo-500" />
-          <span className="text-xl font-bold font-sans tracking-tight">AI Startup Gen</span>
+          <span className="text-xl font-bold font-sans tracking-tight">
+            AI Startup Gen
+          </span>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           className="mx-auto w-full max-w-md"
@@ -53,7 +67,6 @@ export function AuthLayout({ children, title, subtitle }: { children: React.Reac
           </div>
 
           {children}
-
         </motion.div>
       </div>
     </div>

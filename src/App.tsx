@@ -14,10 +14,13 @@ import Dashboard from './app/Dashboard';
 import Generator from './app/Generator';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 
+import { Toaster } from 'sonner';
+
 export default function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <Router>
+        <Toaster theme="dark" position="top-right" richColors />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />

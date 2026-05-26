@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { motion } from "motion/react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export function Hero() {
   return (
@@ -19,7 +19,12 @@ export function Hero() {
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.4, 0.2],
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
           className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-[128px]"
         />
       </div>
@@ -51,7 +56,8 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto"
         >
-          Generate comprehensive business plans, market research, pitch decks, and financial models using the world's most advanced AI models.
+          Generate comprehensive business plans, market research, pitch decks,
+          and financial models using the world's most advanced AI models.
         </motion.p>
 
         <motion.div
