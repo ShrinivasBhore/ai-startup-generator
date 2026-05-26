@@ -9,6 +9,7 @@ import Login from './app/Auth/Login';
 import Register from './app/Auth/Register';
 import ForgotPassword from './app/Auth/ForgotPassword';
 import Dashboard from './app/Dashboard';
+import Generator from './app/Generator';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/generator" element={<Generator />} />
         </Route>
       </Routes>
     </Router>

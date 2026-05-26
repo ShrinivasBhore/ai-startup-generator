@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import { createServer as createViteServer } from 'vite';
 import authRoutes from './routes/auth.routes';
+import generateRoutes from './routes/generate.routes';
 
 async function startServer() {
   const app = express();
@@ -15,6 +16,7 @@ async function startServer() {
 
   // API Routes
   app.use('/api/auth', authRoutes);
+  app.use('/api/generate', generateRoutes);
 
   app.get('/api/health', (req, res) => {
     res.json({ status: 'ok' });

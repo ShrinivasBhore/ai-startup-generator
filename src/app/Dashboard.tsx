@@ -34,10 +34,10 @@ export default function Dashboard() {
             </h2>
             <p className="text-indigo-200">Ready to build your next big idea?</p>
           </div>
-          <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:scale-105 active:scale-95 whitespace-nowrap">
+          <a href="/generator" className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:scale-105 active:scale-95 whitespace-nowrap">
             <Plus className="w-5 h-5" />
             New Startup Plan
-          </button>
+          </a>
         </div>
 
         {/* Analytics Grid */}
