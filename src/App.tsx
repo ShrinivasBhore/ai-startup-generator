@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './components/layout/ErrorFallback';
@@ -13,10 +14,17 @@ import ForgotPassword from './app/Auth/ForgotPassword';
 import Dashboard from './app/Dashboard';
 import Generator from './app/Generator';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
+import { useAuthStore } from './store/useAuthStore';
 
 import { Toaster } from 'sonner';
 
 export default function App() {
+  const checkSession = useAuthStore((state) => state.checkSession);
+  
+  useEffect(() => {
+    checkSession();
+  }, [checkSession]);
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <Router>
