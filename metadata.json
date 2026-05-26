@@ -1,0 +1,6 @@
+{
+  "name": "AI Startup Generator Platform",
+  "description": "Enterprise SaaS platform to convert startup ideas into AI-generated business plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
