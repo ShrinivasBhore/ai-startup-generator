@@ -4,9 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { DashboardLayout } from '@/src/components/layout/DashboardLayout';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, BrainCircuit, Lightbulb, Target, Wallet, Briefcase, Zap, ListChecks, Crosshair, BarChart3, Code2, Rocket, ArrowLeft } from 'lucide-react';
+import { Sparkles, BrainCircuit, Lightbulb, Target, Wallet, Briefcase, Zap, ListChecks, Crosshair, BarChart3, Code2, Rocket, ArrowLeft, Download } from 'lucide-react';
 import { useAuthStore } from '@/src/store/useAuthStore';
 import { Link } from 'react-router-dom';
+import { jsPDF } from 'jspdf';
 
 const formSchema = z.object({
   idea: z.string().min(10, 'Please provide more details about your idea (at least 10 characters).'),
@@ -59,6 +60,79 @@ export default function Generator() {
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  const exportPDF = () => {
+    if (!result) return;
+    
+    const doc = new jsPDF();
+    const margin = 20;
+    let y = margin;
+
+    const addLine = (text: string, isHeader = false) => {
+      if (y > 270) {
+        doc.addPage();
+        y = margin;
+      }
+      if (isHeader) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(14);
+      } else {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+      }
+      
+      const lines = doc.splitTextToSize(text, 170);
+      doc.text(lines, margin, y);
+      y += (lines.length * 5) + (isHeader ? 4 : 2);
+    };
+
+    doc.setFontSize(22);
+    doc.setFont('helvetica', 'bold');
+    doc.text(result.name, margin, y);
+    y += 8;
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'italic');
+    doc.text(result.tagline, margin, y);
+    y += 12;
+
+    addLine('Business Summary', true);
+    addLine(result.businessSummary);
+    y += 4;
+
+    addLine('Core Features', true);
+    result.features.forEach((feature: string) => addLine(`• ${feature}`));
+    y += 4;
+
+    addLine('Marketing Strategy', true);
+    addLine(result.marketingStrategy);
+    y += 4;
+
+    addLine('SWOT Analysis', true);
+    addLine('Strengths:');
+    result.swot.strengths.forEach((s: string) => addLine(`  - ${s}`));
+    addLine('Weaknesses:');
+    result.swot.weaknesses.forEach((s: string) => addLine(`  - ${s}`));
+    addLine('Opportunities:');
+    result.swot.opportunities.forEach((s: string) => addLine(`  - ${s}`));
+    addLine('Threats:');
+    result.swot.threats.forEach((s: string) => addLine(`  - ${s}`));
+    y += 4;
+
+    addLine('MVP Roadmap', true);
+    result.mvpRoadmap.forEach((phase: any) => {
+      addLine(phase.phase);
+      phase.tasks.forEach((task: string) => addLine(`  - ${task}`));
+    });
+    y += 4;
+
+    addLine('Tech Stack', true);
+    result.techStack.forEach((tech: any) => {
+      addLine(`${tech.name}: ${tech.reason}`);
+    });
+
+    doc.save(`${result.name.replace(/\s+/g, '_')}_Business_Plan.pdf`);
   };
 
   return (
@@ -330,7 +404,14 @@ export default function Generator() {
 
               </div>
 
-              <div className="pt-6 flex justify-center">
+              <div className="pt-8 flex flex-col sm:flex-row justify-center gap-4">
+                <button 
+                  onClick={exportPDF}
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)]"
+                >
+                  <Download className="w-5 h-5" />
+                  Download PDF Report
+                </button>
                 <button 
                   onClick={() => setResult(null)}
                   className="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium rounded-xl transition-colors"
