@@ -90,6 +90,17 @@ export const getMe = async (req: any, res: Response): Promise<void> => {
   }
 };
 
+export const forgotPassword = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email } = req.body;
+    // In a real application, verify user exists and send email with reset link
+    res.status(200).json({ message: 'If that email exists, a reset link has been sent.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error during password reset' });
+  }
+};
+
 const generateToken = (id: string, email: string) => {
   return jwt.sign({ id, email }, JWT_SECRET, {
     expiresIn: '30d',
